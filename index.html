@@ -271,6 +271,8 @@
       </div>
   
       <button id="coachBtn" class="btn" title="Vào Coach Mode">🧢 Coach Mode</button>
+      <button id="aboutBtn" class="btn" title="Giới thiệu người tạo">👤 Giới thiệu</button>
+
     </div>
   </header>
   <section class="intro">
@@ -577,7 +579,37 @@
       </div>
     </div>
   </div>
-  
+  <!-- ===================== ABOUT MODAL ===================== -->
+<div id="aboutModal" class="coach-modal" aria-hidden="true">
+  <div class="coach-panel" role="dialog" aria-modal="true" style="grid-template-columns: 1fr;">
+    <div style="overflow-y: auto; padding: 20px;">
+      <h2 style="color: var(--accent); margin-top: 0;">👤 Giới thiệu người tạo trang</h2>
+
+      <div style="display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap; align-items: center;">
+        <img src="https://i.imgur.com/ajg0H2P.png"
+             style="width:160px; height:160px; border-radius:16px; object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+
+        <div style="flex:1; font-size:1rem; line-height:1.6;">
+          <p><b>Tên:</b> TMinh</p>
+          <p><b>Vai trò:</b> Người phát triển & thiết kế trang Karasuno Volleyball Team</p>
+          <p><b>Mục tiêu:</b> Xây dựng trang web sinh động, đẹp mắt và đậm chất Haikyuu.</p>
+        </div>
+      </div>
+
+      <h3 style="color: var(--accent); margin-top: 26px;">✨ Thông điệp</h3>
+      <p>
+        Cảm ơn bạn đã ghé thăm trang web!  
+        Đây là dự án mình tạo ra vì đam mê bóng chuyền và Haikyuu.  
+        Chúc bạn có trải nghiệm thú vị khi khám phá đội bóng Karasuno 💛🖤
+      </p>
+
+      <div style="margin-top: 20px; text-align:right;">
+        <button id="closeAbout" class="btn">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script>
     // -----------------------------------------------------------------------------------
     // 1. CÁC BIẾN CHUNG (GLOBAL DATA)
@@ -882,6 +914,7 @@
           div.dataset.height = p.height;
           div.dataset.position = p.position;
           div.innerHTML = `<img src="${p.img}" alt="${p.name}"><div><strong style="font-size:0.95rem">${p.name}</strong><div class="muted" style="font-size:0.79rem">${p.position} • ${p.height} cm</div></div>`;
+          
           coachPlayerList.appendChild(div);
   
           div.addEventListener('dragstart', (ev) => {
@@ -954,12 +987,34 @@
         }
       }, { once: true });
   
-  
+// ===================== ABOUT MODAL LOGIC =====================
+const aboutModal = document.getElementById("aboutModal");
+const aboutBtn = document.getElementById("aboutBtn");
+const closeAbout = document.getElementById("closeAbout");
+
+aboutBtn.addEventListener("click", () => {
+  aboutModal.style.display = "flex";
+  aboutModal.setAttribute("aria-hidden", "false");
+});
+
+closeAbout.addEventListener("click", () => {
+  aboutModal.style.display = "none";
+  aboutModal.setAttribute("aria-hidden", "true");
+});
+
+aboutModal.addEventListener("click", (e) => {
+  if (e.target === aboutModal) {
+    aboutModal.style.display = "none";
+    aboutModal.setAttribute("aria-hidden", "true");
+  }
+});
+
     })();
   </script>
   
   </body>
   </html>
+
 
 
 
